@@ -1,7 +1,9 @@
-import model.AppModel;
-import org.junit.Assert;
+package model;
+
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class AppModelTest {
     private AppModel model;
@@ -12,13 +14,13 @@ public class AppModelTest {
     }
 
     @Test
-    public void TestConstructor() {
-        Assert.assertEquals(42, this.model.getX());
+    public void getX() {
+        assertEquals(42, this.model.getX());
     }
 
     @Test
-    public void TestSetter() {
+    public void setX() {
         this.model.setX(90);
-        Assert.assertEquals(90, this.model.getX());
+        assertEquals(90, this.model.getX());
     }
 }
