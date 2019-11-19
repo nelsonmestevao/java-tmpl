@@ -1,9 +1,13 @@
 package model;
 
-public class AppModel {
+public final class AppModel {
     private int x;
 
-    public AppModel(int x) {
+    public AppModel() {
+        this.x = 0;
+    }
+
+    public AppModel(final int x) {
         this.x = x;
     }
 
@@ -11,14 +15,12 @@ public class AppModel {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(final int x) {
         this.x = x;
     }
 
     @Override
     public String toString() {
-        return "AppModel { " +
-                "x = " + x +
-                " }";
+        return "AppModel { " + "x = " + x + " }";
     }
 }

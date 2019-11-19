@@ -4,12 +4,13 @@ import util.Parse;
 
 import java.util.List;
 
-public class AppView {
+public final class AppView {
     private static final String LOGO_PATH = "img/logo.ascii";
 
-    public void show(List<String> text) {
-        for (String line : text)
+    public void show(final List<String> text) {
+        for (String line : text) {
             System.out.println(line);
+        }
     }
 
     public static void showLogo() {
