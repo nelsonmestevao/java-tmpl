@@ -30,6 +30,18 @@ test:
   script:
     - mvn $MAVEN_CLI_OPTS test
 
+format:
+  stage: style
+  script:
+    - mvn $MAVEN_CLI_OPTS formatter:validate
+
+lint:
+  stage: style
+  script:
+    - mvn $MAVEN_CLI_OPTS checkstyle:check
+  only:
+    - merge_request
+
 javadocs:
   stage: docs
   script:
