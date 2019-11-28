@@ -42,19 +42,20 @@ lint:
   only:
     - merge_request
 
-javadocs:
+javadoc:
   stage: docs
   script:
     - mvn $MAVEN_CLI_OPTS javadoc:javadoc
   only:
     - merge_request
 
-site:
+pages:
   stage: docs
   script:
     - mvn $MAVEN_CLI_OPTS site:site
+    - mv target/site public/
   only:
-    - merge_request
+    - master
   artifacts:
     paths:
-      - target/site
+      - public/

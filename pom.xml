@@ -14,6 +14,18 @@
         language.
     </description>
 
+
+    <developers>
+        <developer>
+            <id>nelsonmestevao</id>
+            <name>Nelson Estevão</name>
+            <email>hello@estevao.xyz</email>
+            <properties>
+                <picUrl>https://github.com/nelsonmestevao.png?size=120</picUrl>
+            </properties>
+        </developer>
+    </developers>
+
     <properties>
         <java.version>11</java.version>
         <project.encoding>UTF-8</project.encoding>
@@ -60,6 +72,7 @@
                 <version>2.10.0</version>
                 <configuration>
                     <encoding>${project.encoding}</encoding>
+                    <configFile>.formatter.xml</configFile>
                 </configuration>
             </plugin>
             <plugin>
