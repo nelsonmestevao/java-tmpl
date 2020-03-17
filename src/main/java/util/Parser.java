@@ -6,20 +6,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Parse {
+public final class Parser {
 
-    private Parse() {
-
+    private Parser() {
     }
 
     /**
      * Function that reads all lines from a file.
      *
-     * @param file
-     *            from where should read
+     * @param file from where should read
      * @return List of Strings
      */
-    public static List<String> read(final String file) {
+    public static List<String> readFile(final String file) {
         List<String> linhas = new ArrayList<>();
         BufferedReader inFile;
         String linha;
