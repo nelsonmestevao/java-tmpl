@@ -34,13 +34,13 @@ The following software is required to be installed on your system:
 
 ### :hammer: Development
 
-Compile and run the project in a clean build.
+Run the project in a clean build.
 
 ```bash
 mvn clean compile exec:java
 ```
 
-Running tests.
+Run the tests.
 
 ```bash
 mvn test
@@ -60,7 +60,7 @@ mvn checkstyle:check
 
 ### :package: Deployment
 
-Bundling the app into jar file.
+Bundle the app into jar file.
 
 ```bash
 mvn package
