@@ -33,7 +33,7 @@ test:
 format:
   stage: style
   script:
-    - mvn $MAVEN_CLI_OPTS formatter:validate
+    - mvn $MAVEN_CLI_OPTS fmt:check
 
 lint:
   stage: style

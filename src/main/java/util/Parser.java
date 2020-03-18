@@ -3,13 +3,13 @@ package util;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public final class Parser {
 
-    private Parser() {
-    }
+    private Parser() {}
 
     /**
      * Function that reads all lines from a file.

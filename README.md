@@ -49,7 +49,7 @@ mvn test
 Format the code accordingly to common guide lines.
 
 ```bash
-mvn formatter:format
+mvn fmt:format
 ```
 
 Lint your code with _checkstyle_.
