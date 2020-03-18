@@ -46,7 +46,7 @@ Running tests.
 mvn test
 ```
 
-Format the code accordingly to common guide lines.
+Format the code accordingly to common [guide lines](https://github.com/google/google-java-format).
 
 ```bash
 mvn fmt:format
