@@ -13,7 +13,7 @@ import util.Parser;
 public final class App {
     private static Logger log = LogManager.getLogger(App.class);
 
-    private static final String PROGRAM_NAME = "example";
+    private static final String PROGRAM_NAME = "java-tmpl";
 
     @Parameter(
             names = {"-h", "--help"},
