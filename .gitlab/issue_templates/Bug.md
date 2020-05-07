@@ -13,15 +13,18 @@ and verify the issue you're about to submit isn't a duplicate.
 
 <!--- Summarize the bug encountered concisely --->
 
+
 ### Steps to reproduce
 
 <!--- How one can reproduce the issue - this is very important --->
 
-### What is the current *bug* behaviour?
+
+### :negative_squared_cross_mark: What is the current _bug_ behaviour?
 
 <!--- What actually happens --->
 
-### What is the expected *correct* behaviour?
+
+### :heavy_check_mark: What is the expected _correct_ behaviour?
 
 <!--- What you should see instead --->
 
