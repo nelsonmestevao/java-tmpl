@@ -17,11 +17,11 @@ and verify the issue you're about to submit isn't a duplicate.
 
 <!--- How one can reproduce the issue - this is very important --->
 
-### What is the current *bug* behavior?
+### What is the current *bug* behaviour?
 
 <!--- What actually happens --->
 
-### What is the expected *correct* behavior?
+### What is the expected *correct* behaviour?
 
 <!--- What you should see instead --->
 
