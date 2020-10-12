@@ -34,36 +34,95 @@ The following software is required to be installed on your system:
 
 ### :hammer: Development
 
-Run the project in a clean build.
+Start a server instance.
 
-```bash
-mvn clean compile exec:java
+```
+bin/server
+```
+
+Start a client instance.
+
+```
+bin/client
+```
+
+Run the project.
+
+```
+bin/run
+```
+
+Build the project.
+
+```
+bin/build
 ```
 
 Run the tests.
 
-```bash
-mvn test
+```
+bin/test
 ```
 
 Format the code accordingly to common [guide lines](https://github.com/google/google-java-format).
 
-```bash
-mvn fmt:format
+```
+bin/format
 ```
 
 Lint your code with _checkstyle_.
 
-```bash
-mvn checkstyle:check
+```
+bin/lint
+```
+
+Generate the documentation.
+
+```
+bin/docs
+```
+
+Clean the repository.
+
+```
+bin/clean
+```
+
+### :whale: Docker
+
+If you want to setup the required databases using docker containers you can
+easily do it with [docker-compose](https://docs.docker.com/compose/install/).
+
+Create and start the containers.
+
+```
+docker-compose up
+```
+
+Start the previously created containers.
+
+```
+docker-compose start
+```
+
+Stop the containers.
+
+```
+docker-compose stop
+```
+
+Destroy the containers created.
+
+```
+docker-compose down
 ```
 
 ### :package: Deployment
 
-Bundle the app into jar file.
+Deploy the application.
 
-```bash
-mvn package
+```
+bin/deploy
 ```
 
 ## :busts_in_silhouette: Team
@@ -71,3 +130,4 @@ mvn package
 | [![Hugo][hugo-pic]][hugo] | [![Nelson][nelson-pic]][nelson] | [![Pedro][pedro-pic]][pedro] |
 | :-----------------------: | :-----------------------------: | :--------------------------: |
 |   [Hugo Carvalho][hugo]   |    [Nelson Estevão][nelson]     |    [Pedro Ribeiro][pedro]    |
+
