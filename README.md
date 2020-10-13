@@ -18,7 +18,7 @@ Start by filling out the environment variables defined in the `.env` file. Use
 the `.env.sample` as a starting point.
 
 ```bash
-cp .env.sample .env
+bin/setup
 ```
 
 After this, you must fill in the fields correctly and export them in your
