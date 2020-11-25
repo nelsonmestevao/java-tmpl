@@ -5,8 +5,8 @@ services:
     volumes:
       - /data/mongo:/data/db
     environment:
-      MONGO_INITDB_ROOT_USERNAME: "${DELEGATE_DATA_MONGODB_USERNAME}"
-      MONGO_INITDB_ROOT_PASSWORD: "${DELEGATE_DATA_MONGODB_PASSWORD}"
+      MONGO_INITDB_ROOT_USERNAME: "${DB_MONGODB_USERNAME}"
+      MONGO_INITDB_ROOT_PASSWORD: "${DB_MONGODB_PASSWORD}"
     ports:
       - "27017-27019:27017-27019"
   logs:
@@ -14,6 +14,9 @@ services:
     volumes:
       - /data/mysql:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: "${DELEGATE_DATA_MYSQL_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${DB_MYSQL_ROOT_PASSWORD}"
+      MYSQL_USER: "${DB_MYSQL_USERNAME}"
+      MYSQL_PASSWORD: "${DB_MYSQL_PASSWORD}"
+      MYSQL_DATABASE: "${DB_MYSQL_DATABASE}"
     ports:
       - "3306:3306"
