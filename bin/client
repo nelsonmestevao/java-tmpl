@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-mvn compile exec:java@client -Dexec.args="$*"
+bin/mvnw compile exec:java@client -Dexec.args="$*"

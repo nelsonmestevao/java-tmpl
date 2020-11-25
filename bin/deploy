@@ -2,4 +2,4 @@
 
 . scripts/helpers.sh
 
-mvn package
+bin/mvnw package
