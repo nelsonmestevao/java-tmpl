@@ -2,7 +2,8 @@
 
 . scripts/helpers.sh
 
-VERSION=0.1.0
+PROGRAM=$(basename "$0")
+VERSION=0.1.1
 
 function display_help() {
   cat <<EOF
@@ -18,11 +19,11 @@ EOF
 function format() {
   case $1 in
     shell)
-      echo_info "fmt" "shell scripts"
+      echo_info "${FUNCNAME[0]}" "${1} scripts"
       shfmt -i 2 -ci -s -w -f .
       ;;
     java)
-      echo_info "fmt" "java files"
+      echo_info "${FUNCNAME[0]}" "${1} files"
       bin/mvnw fmt:format
       ;;
   esac
@@ -33,15 +34,12 @@ case $1 in
     display_help
     ;;
   -v | --version)
-    echo "formatter script version ${VERSION}"
+    echo "${PROGRAM} script version ${VERSION}"
     ;;
   shell | bash | sh | scripts)
     format shell
     ;;
-  java)
-    format java
-    ;;
-  *)
+  java | *)
     format java
     ;;
 esac

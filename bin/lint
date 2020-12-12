@@ -1,3 +1,45 @@
 #!/usr/bin/env bash
 
-bin/mvnw checkstyle:check
+. scripts/helpers.sh
+
+PROGRAM=$(basename "$0")
+VERSION=0.1.0
+
+function display_help() {
+  cat <<EOF
+    Usage:
+      ${PROGRAM} [options] [java | shell]
+
+    Options:
+      -h --help         Show this screen.
+      -v --version      Show version.
+EOF
+}
+
+function lint() {
+  case $1 in
+    shell)
+      echo_info "${FUNCNAME[0]}" "${1} scripts"
+      shellcheck scripts/*.sh
+      ;;
+    java)
+      echo_info "${FUNCNAME[0]}" "${1} files"
+      bin/mvnw checkstyle:check
+      ;;
+  esac
+}
+
+case $1 in
+  -h | --help)
+    display_help
+    ;;
+  -v | --version)
+    echo "${PROGRAM} script version ${VERSION}"
+    ;;
+  shell | bash | sh | scripts)
+    lint shell
+    ;;
+  java | *)
+    lint java
+    ;;
+esac
