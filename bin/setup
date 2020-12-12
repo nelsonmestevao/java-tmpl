@@ -2,6 +2,9 @@
 
 . scripts/helpers.sh
 
+echo_info "setup" "Downloading dependencies..."
+bin/mvnw package
+
 echo_info "setup" "Setting up the env..."
 
 if [ ! -f .env ]; then

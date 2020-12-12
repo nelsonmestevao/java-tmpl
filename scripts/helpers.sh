@@ -64,8 +64,17 @@ function echo_done() {
 }
 
 function echo_info() {
+  if [ "$#" -eq 1 ]; then
+    PREFIX="INFO"
+  else
+    PREFIX=$1
+    shift 1
+  fi
+
   colorize cyan bold
-  echo "INFO:$(colorize reset)" "$@"
+  echo "${PREFIX}:$(colorize reset)" "$@"
+}
+
 }
 
 function not_installed() {

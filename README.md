@@ -125,6 +125,10 @@ Deploy the application.
 bin/deploy
 ```
 
+### :hammer_and_wrench: Tools
+
+The recommended Integrated Development Environment (IDE) is IntelliJ IDEA.
+
 ## :busts_in_silhouette: Team
 
 | [![Hugo][hugo-pic]][hugo] | [![Nelson][nelson-pic]][nelson] | [![Pedro][pedro-pic]][pedro] |
