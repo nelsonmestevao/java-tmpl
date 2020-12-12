@@ -32,7 +32,7 @@ public final class App {
             names = {"-p", "--port"},
             description = "Port number")
     private int port =
-            Optional.ofNullable(Integer.parseInt(System.getenv("APP_SERVER_PORT"))).orElse(8080);
+            Optional.of(Integer.parseInt(System.getenv("APP_SERVER_PORT"))).orElse(8080);
 
     @Parameter(
             names = {"-l", "--length"},
