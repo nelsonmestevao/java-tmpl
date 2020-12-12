@@ -1,3 +1,47 @@
 #!/usr/bin/env bash
 
-bin/mvnw fmt:format
+. scripts/helpers.sh
+
+VERSION=0.1.0
+
+function display_help() {
+  cat <<EOF
+    Usage:
+      format [options] [java | shell]
+
+    Options:
+      -h --help         Show this screen.
+      -v --version      Show version.
+EOF
+}
+
+function format() {
+  case $1 in
+    shell)
+      echo_info "fmt" "shell scripts"
+      shfmt -i 2 -ci -s -w -f .
+      ;;
+    java)
+      echo_info "fmt" "java files"
+      bin/mvnw fmt:format
+      ;;
+  esac
+}
+
+case $1 in
+  -h | --help)
+    display_help
+    ;;
+  -v | --version)
+    echo "formatter script version ${VERSION}"
+    ;;
+  shell | bash | sh | scripts)
+    format shell
+    ;;
+  java)
+    format java
+    ;;
+  *)
+    format java
+    ;;
+esac

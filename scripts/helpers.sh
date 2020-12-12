@@ -75,8 +75,6 @@ function echo_info() {
   echo "${PREFIX}:$(colorize reset)" "$@"
 }
 
-}
-
 function not_installed() {
   [ ! -x "$(command -v "$@")" ]
 }
