@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
@@ -19,18 +20,27 @@ public final class App {
             names = {"-h", "--help"},
             help = true,
             description = "Displays help information")
-    private boolean help;
+    private boolean help = false;
 
     @Parameter(
-            names = {"--length", "-l"},
+            names = {"-a", "--address", "--hostname"},
+            description = "Hostname address")
+    private String address =
+            Optional.ofNullable(System.getenv("APP_SERVER_HOSTNAME")).orElse("127.0.0.1");
+
+    @Parameter(
+            names = {"-p", "--port"},
+            description = "Port number")
+    private int port =
+            Optional.ofNullable(Integer.parseInt(System.getenv("APP_SERVER_PORT"))).orElse(8080);
+
+    @Parameter(
+            names = {"-l", "--length"},
             required = true)
     private int length;
 
-    @Parameter(names = {"--pattern", "-p"})
-    private int pattern = 0;
-
     @Parameter(
-            names = {"--users", "-u"},
+            names = {"-u", "--users"},
             variableArity = true,
             description = "List of users whose home directories will be archived as per profile.")
     private List<String> users = new ArrayList<>();
@@ -47,8 +57,9 @@ public final class App {
         log.info("Application started successfully");
         Parser.readFile("target/classes" + "/art/logo.ascii").stream().forEach(System.out::println);
 
+        System.out.println("hostname: " + this.address);
+        System.out.println("port: " + this.port);
         System.out.println("length: " + this.length);
-        System.out.println("pattern: " + this.pattern);
         System.out.println("users: " + this.users);
     }
 
