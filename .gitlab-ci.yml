@@ -34,6 +34,8 @@ format:
   stage: style
   script:
     - mvn $MAVEN_CLI_OPTS fmt:check
+  only:
+    - merge_request
 
 lint:
   stage: style
