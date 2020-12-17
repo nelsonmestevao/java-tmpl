@@ -75,6 +75,17 @@ function echo_info() {
   echo "${PREFIX}:$(colorize reset)" "$@"
 }
 
+function load_env() {
+  ENV_FILE=${1:-.env}
+  set -a
+  if [ -f "$ENV_FILE" ]; then
+    . "$ENV_FILE"
+  else
+    echo_error "Couldn't locate ${ENV_FILE} file..."
+  fi
+  set +a
+}
+
 function not_installed() {
   [ ! -x "$(command -v "$@")" ]
 }
