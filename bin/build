@@ -1,3 +1,46 @@
 #!/usr/bin/env bash
 
-bin/mvnw clean compile
+set -Eeuo pipefail
+
+BASE_DIR=$(dirname "${BASH_SOURCE[0]:-$0}")
+cd "${BASE_DIR}/.." || exit 127
+
+# shellcheck source=../scripts/helpers.sh
+. scripts/helpers.sh
+
+PROGRAM=$(basename "$0")
+VERSION=0.1.0
+
+function display_help() {
+  cat <<EOF
+    Usage:
+      ${PROGRAM} [options] [<command>]
+
+    Commands:
+      java   <- default value
+
+    Options:
+      -h --help         Show this screen.
+      -v --version      Show version.
+      --clean           Clean all artifacts before building.
+EOF
+}
+
+case ${1:-java} in
+  -h | --help)
+    display_help
+    ;;
+  -v | --version)
+    echo "${PROGRAM} script version ${VERSION}"
+    ;;
+  -c | --clean)
+    bin/mvnw clean compile
+    ;;
+   java)
+    bin/mvnw compile
+    ;;
+   *)
+    display_help >&2
+    exit 1
+    ;;
+esac

@@ -1,17 +1,67 @@
 #!/usr/bin/env bash
 
+set -Eeuo pipefail
+
+BASE_DIR=$(dirname "${BASH_SOURCE[0]:-$0}")
+cd "${BASE_DIR}/.." || exit 127
+
+# shellcheck source=../scripts/helpers.sh
 . scripts/helpers.sh
 
-echo_info "setup" "Downloading dependencies..."
-bin/mvnw package
+PROGRAM=$(basename "$0")
+VERSION=0.1.0
 
-echo_info "setup" "Setting up the env..."
+function display_help() {
+  cat <<EOF
+    Usage:
+      ${PROGRAM} [options] [<command>]
 
-if [ ! -f .env ]; then
-  cp .env.sample .env
-  echo_done "env file created, you might want to open .env and set the correct values..."
-  echo
-else
-  echo_warning ".env file already exists, skipping..."
-  echo
-fi
+    Commands:
+      all  <- default value
+      dependencies
+      set_env
+
+    Options:
+      -h --help         Show this screen.
+      -v --version      Show version.
+EOF
+}
+
+function download_dependencies() {
+  log_info "setup" "Downloading dependencies..."
+  bin/mvnw package
+  log_success "Dependencies downloaded"
+}
+
+function set_env() {
+  log_info "setup" "Setting up the env..."
+  if [ ! -f .env ]; then
+    cp .env.sample .env
+    log_success "env file created, you might want to open .env and set the correct values..."
+  else
+    log_warn ".env file already exists, skipping..."
+  fi
+}
+
+case ${1:-all} in
+  -h | --help)
+    display_help
+    ;;
+  -v | --version)
+    echo "${PROGRAM} script version ${VERSION}"
+    ;;
+  dependencies)
+    download_dependencies
+    ;;
+  environment)
+    set_env
+    ;;
+  all)
+    download_dependencies
+    set_env
+    ;;
+  *)
+    display_help >&2
+    exit 1
+    ;;
+esac

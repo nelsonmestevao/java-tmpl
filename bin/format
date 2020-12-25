@@ -1,14 +1,24 @@
 #!/usr/bin/env bash
 
+set -Eeuo pipefail
+
+BASE_DIR=$(dirname "${BASH_SOURCE[0]:-$0}")
+cd "${BASE_DIR}/.." || exit 127
+
+# shellcheck source=../scripts/helpers.sh
 . scripts/helpers.sh
 
 PROGRAM=$(basename "$0")
-VERSION=0.1.1
+VERSION=0.2.0
 
 function display_help() {
   cat <<EOF
     Usage:
-      format [options] [java | shell]
+      ${PROGRAM} [options] [<command>]
+
+    Commands:
+      java   <- default value
+      shell
 
     Options:
       -h --help         Show this screen.
@@ -19,17 +29,19 @@ EOF
 function format() {
   case $1 in
     shell)
-      echo_info "${FUNCNAME[0]}" "${1} scripts"
+      log_info "${FUNCNAME[0]} ${1} scripts"
       shfmt -i 2 -ci -s -w -f .
+      log_success "${FUNCNAME[0]} ${1} scripts"
       ;;
     java)
-      echo_info "${FUNCNAME[0]}" "${1} files"
+      log_info "${FUNCNAME[0]} ${1} files"
       bin/mvnw fmt:format
+      log_success "${FUNCNAME[0]} ${1} files"
       ;;
   esac
 }
 
-case $1 in
+case ${1:-java} in
   -h | --help)
     display_help
     ;;
@@ -39,7 +51,11 @@ case $1 in
   shell | bash | sh | scripts)
     format shell
     ;;
-  java | *)
+  java)
     format java
+    ;;
+   *)
+    display_help >&2
+    exit 1
     ;;
 esac
