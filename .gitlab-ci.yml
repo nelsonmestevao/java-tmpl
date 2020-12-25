@@ -24,11 +24,15 @@ build:
   stage: build
   script:
     - mvn $MAVEN_CLI_OPTS compile
+  only:
+    - merge_request
 
 test:
   stage: test
   script:
     - mvn $MAVEN_CLI_OPTS test
+  only:
+    - merge_request
 
 format:
   stage: style
