@@ -8,8 +8,8 @@ cd "${BASE_DIR}/.." || exit 127
 # shellcheck source=../scripts/helpers.sh
 . scripts/helpers.sh
 
-PROGRAM=$(basename "$0")
-VERSION=0.2.1
+PROGRAM=$(basename "${BASH_SOURCE[0]:-$0}")
+VERSION=0.2.2
 
 function display_help() {
   cat <<EOF
@@ -31,7 +31,7 @@ case ${1:-java} in
     display_help
     ;;
   -v | --version)
-    echo "${PROGRAM} script version ${VERSION}"
+    display_version ${PROGRAM} ${VERSION}
     ;;
   -c | --clean)
     bin/mvnw clean compile

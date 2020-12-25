@@ -48,7 +48,7 @@ case ${1:-all} in
     display_help
     ;;
   -v | --version)
-    echo "${PROGRAM} script version ${VERSION}"
+    display_version ${PROGRAM} ${VERSION}
     ;;
   dependencies)
     download_dependencies

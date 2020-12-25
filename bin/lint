@@ -9,7 +9,7 @@ cd "${BASE_DIR}/.." || exit 127
 . scripts/helpers.sh
 
 PROGRAM=$(basename "$0")
-VERSION=0.2.1
+VERSION=0.2.2
 
 function display_help() {
   cat <<EOF
@@ -46,7 +46,7 @@ case ${1:-java} in
     display_help
     ;;
   -v | --version)
-    echo "${PROGRAM} script version ${VERSION}"
+    display_version ${PROGRAM} ${VERSION}
     ;;
   shell | bash | sh | scripts)
     lint shell

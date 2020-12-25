@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION=0.2.1
+VERSION=0.2.2
 
 tput sgr0
 RED=$(tput setaf 1)
@@ -67,4 +67,17 @@ function load_env() {
 
 function not_installed() {
   [ ! -x "$(command -v "$@")" ]
+}
+
+function display_version() {
+    local program="$1"
+    local version="$2"
+    if not_installed figlet; then
+      echo "${program} script version ${version}"
+    else
+      echo -n "${BLUE}${BOLD}" 
+      figlet "${program} script"
+      echo -n ${RESET}
+      echo "version ${version}"
+    fi
 }
