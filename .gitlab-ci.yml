@@ -62,6 +62,7 @@ pages:
     - mv target/site public/
   only:
     - master
+    - main
   artifacts:
     paths:
       - public/
