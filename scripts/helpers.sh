@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION=0.1.0
+VERSION=0.2.1
 
 tput sgr0
 RED=$(tput setaf 1)
@@ -13,7 +13,7 @@ WHITE=$(tput setaf 7)
 BOLD=$(tput bold)
 RESET=$(tput sgr0)
 
-log() {
+function log() {
   local LABEL="$1"
   local COLOR="$2"
   shift 2
@@ -26,19 +26,19 @@ log() {
   printf "%*s\n" $(tput cols) | tr ' ' '='
 }
 
-log_error() {
+function log_error() {
   log "FAIL" "$RED" "$@"
 }
 
-log_warn() {
+function log_warn() {
   log "WARN" "$ORANGE" "$@"
 }
 
-log_success() {
+function log_success() {
   log "OK" "$GREEN" "$@"
 }
 
-log_info() {
+function log_info() {
   local LABEL="INFO"
 
   if ! [ "$#" -eq 1 ]; then
@@ -47,6 +47,11 @@ log_info() {
   fi
 
   log "${LABEL}" "$CYAN" "$@"
+}
+
+function help_section() {
+  local TITLE=$(echo "$@" | tr [a-z] [A-Z])
+  echo -e "${BOLD}${TITLE}${RESET}"
 }
 
 function load_env() {

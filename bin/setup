@@ -9,21 +9,21 @@ cd "${BASE_DIR}/.." || exit 127
 . scripts/helpers.sh
 
 PROGRAM=$(basename "$0")
-VERSION=0.1.0
+VERSION=0.2.1
 
 function display_help() {
   cat <<EOF
-    Usage:
-      ${PROGRAM} [options] [<command>]
+  $(help_section Usage)
+    ${PROGRAM} [options] [<command>]
 
-    Commands:
-      all  <- default value
-      dependencies
-      set_env
+  $(help_section Commands)
+    all  <- default value
+    dependencies
+    set_env
 
-    Options:
-      -h --help         Show this screen.
-      -v --version      Show version.
+  $(help_section Options)
+    -h --help         Show this screen.
+    -v --version      Show version.
 EOF
 }
 
