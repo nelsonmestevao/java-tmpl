@@ -52,6 +52,12 @@ Run the project.
 bin/run
 ```
 
+Run an interactive Java shell for quick testing.
+
+```
+bin/jshell
+```
+
 Build the project.
 
 ```

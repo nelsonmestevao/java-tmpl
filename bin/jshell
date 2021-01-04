@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+BASE_DIR=$(dirname "${BASH_SOURCE[0]:-$0}")
+cd "${BASE_DIR}/.." || exit 127
+
+# shellcheck source=../scripts/helpers.sh
+. scripts/helpers.sh
+
+PROGRAM=$(basename "$0")
+VERSION=0.1.0
+
+function display_help() {
+  cat <<EOF
+    Usage:
+      ${PROGRAM} [options]
+
+    Options:
+      -h --help         Show this screen.
+      -v --version      Show version.
+EOF
+}
+
+case ${1:-run} in
+  -h | --help)
+    display_help
+    ;;
+  -v | --version)
+    echo "${PROGRAM} script version ${VERSION}"
+    ;;
+  run)
+    bin/mvnw jshell:run
+    ;;
+  *)
+    display_help >&2
+    exit 1
+    ;;
+esac
