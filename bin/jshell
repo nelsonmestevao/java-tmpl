@@ -27,7 +27,7 @@ case ${1:-run} in
     display_help
     ;;
   -v | --version)
-    echo "${PROGRAM} script version ${VERSION}"
+    display_version ${PROGRAM} ${VERSION}
     ;;
   run)
     bin/mvnw jshell:run
