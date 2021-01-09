@@ -9,17 +9,17 @@ cd "${BASE_DIR}/.." || exit 127
 . scripts/helpers.sh
 
 PROGRAM=$(basename "$0")
-VERSION=0.2.2
+VERSION=0.2.5
 
 function display_help() {
   cat <<EOF
-  $(help_section Usage)
+  $(help_title_section Usage)
     ${PROGRAM} [options] [<command>]
 
-  $(help_section Commands)
+  $(help_title_section Commands)
     java   <- default value
 
-  $(help_section Options)
+  $(help_title_section Options)
     -h --help         Show this screen.
     -v --version      Show version.
 EOF

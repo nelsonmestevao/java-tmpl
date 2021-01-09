@@ -1,17 +1,15 @@
 #!/usr/bin/env bash
 
-VERSION=0.2.2
+set -Eeuo pipefail
 
-tput sgr0
-RED=$(tput setaf 1)
-ORANGE=$(tput setaf 3)
-GREEN=$(tput setaf 2)
-PURPLE=$(tput setaf 5)
-CYAN=$(tput setaf 4)
-BLUE=$(tput setaf 6)
-WHITE=$(tput setaf 7)
-BOLD=$(tput bold)
-RESET=$(tput sgr0)
+BASE_DIR=$(dirname "${BASH_SOURCE[0]:-$0}")
+
+# shellcheck source=./colors.sh
+. "${BASE_DIR}/colors.sh"
+# shellcheck source=./colors.sh
+. "${BASE_DIR}/utils.sh"
+
+VERSION=0.2.5
 
 function log() {
   local LABEL="$1"
@@ -42,16 +40,11 @@ function log_info() {
   local LABEL="INFO"
 
   if ! [ "$#" -eq 1 ]; then
-    LABEL=$(echo "$1" | tr [a-z] [A-Z])
+    LABEL=$(echo "$1" | tr '[a-z]' '[A-Z]')
     shift 1
   fi
 
   log "${LABEL}" "$CYAN" "$@"
-}
-
-function help_section() {
-  local TITLE=$(echo "$@" | tr [a-z] [A-Z])
-  echo -e "${BOLD}${TITLE}${RESET}"
 }
 
 function load_env() {
@@ -60,24 +53,11 @@ function load_env() {
   if [ -f "$ENV_FILE" ]; then
     . "$ENV_FILE"
   else
-    echo_error "Couldn't locate ${ENV_FILE} file..."
+    log_error "Couldn't locate ${ENV_FILE} file..."
   fi
   set +a
 }
 
 function not_installed() {
   [ ! -x "$(command -v "$@")" ]
-}
-
-function display_version() {
-    local program="$1"
-    local version="$2"
-    if not_installed figlet; then
-      echo "${program} script version ${version}"
-    else
-      echo -n "${BLUE}${BOLD}" 
-      figlet "${program} script"
-      echo -n ${RESET}
-      echo "version ${version}"
-    fi
 }
