@@ -2,7 +2,6 @@ package view;
 
 import java.io.IOException;
 import java.util.List;
-
 import jline.console.ConsoleReader;
 
 public final class Terminal {

@@ -37,7 +37,7 @@ test:
 format:
   stage: style
   script:
-    - mvn $MAVEN_CLI_OPTS fmt:check
+    - mvn $MAVEN_CLI_OPTS spotless:check
   only:
     - merge_request
 

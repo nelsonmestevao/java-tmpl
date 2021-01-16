@@ -35,7 +35,7 @@ function format() {
       ;;
     java)
       log_info "${FUNCNAME[0]} ${1} files"
-      bin/mvnw fmt:format
+      bin/mvnw spotless:apply
       log_success "${FUNCNAME[0]} ${1} files"
       ;;
   esac

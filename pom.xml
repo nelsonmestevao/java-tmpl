@@ -140,13 +140,32 @@
             </configuration>
         </plugin>
         <plugin>
-            <groupId>com.coveo</groupId>
-            <artifactId>fmt-maven-plugin</artifactId>
-            <version>2.9</version>
+            <groupId>com.diffplug.spotless</groupId>
+            <artifactId>spotless-maven-plugin</artifactId>
+            <version>2.7.0</version>
             <configuration>
-                <verbose>true</verbose>
-                <skipSortingImports>true</skipSortingImports>
-                <style>aosp</style>
+                <formats>
+                    <format>
+                        <includes>
+                            <include>*.md</include>
+                            <include>.gitignore</include>
+                        </includes>
+                        <trimTrailingWhitespace/>
+                        <endWithNewline/>
+                        <indent>
+                            <tabs>true</tabs>
+                            <spacesPerTab>4</spacesPerTab>
+                        </indent>
+                    </format>
+                </formats>
+                <java>
+                    <toggleOffOn />
+                    <removeUnusedImports />
+                    <googleJavaFormat>
+                        <version>1.9</version>
+                        <style>AOSP</style>
+                    </googleJavaFormat>
+                </java>
             </configuration>
         </plugin>
         <plugin>

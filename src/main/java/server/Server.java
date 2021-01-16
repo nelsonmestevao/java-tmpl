@@ -5,12 +5,9 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.List;
-
-import sun.misc.Signal;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+import sun.misc.Signal;
 import util.Parser;
 import view.Terminal;
 

@@ -140,4 +140,3 @@ The recommended Integrated Development Environment (IDE) is IntelliJ IDEA.
 | [![Hugo][hugo-pic]][hugo] | [![Nelson][nelson-pic]][nelson] | [![Pedro][pedro-pic]][pedro] |
 | :-----------------------: | :-----------------------------: | :--------------------------: |
 |   [Hugo Carvalho][hugo]   |    [Nelson Estevão][nelson]     |    [Pedro Ribeiro][pedro]    |
-
