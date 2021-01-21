@@ -5,6 +5,7 @@ stages:
   - test
   - style
   - docs
+  - debug
 
 variables:
   # This will suppress any download for dependencies and plugins or upload messages which would clutter the console log.
@@ -20,7 +21,7 @@ cache:
     - .m2/repository/
     - target/
 
-build:
+compile:
   stage: build
   script:
     - mvn $MAVEN_CLI_OPTS compile
@@ -54,6 +55,14 @@ javadoc:
     - mvn $MAVEN_CLI_OPTS javadoc:javadoc
   only:
     - merge_request
+
+ci:
+  stage: debug
+  script:
+    - ./.gitlab/scripts/gitlab-ci-info.sh
+  only:
+    - merge_request
+  when: on_failure
 
 pages:
   stage: docs
