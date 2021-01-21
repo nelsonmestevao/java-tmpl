@@ -29,7 +29,7 @@ function running() {
   case $1 in
     java)
       log_info "${FUNCNAME[0]} ${1} tests"
-      bin/mvnw test
+      bin/mvnw test jacoco:report
       log_success "${FUNCNAME[0]} ${1} tests"
       ;;
   esac

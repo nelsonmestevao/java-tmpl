@@ -31,7 +31,8 @@ compile:
 test:
   stage: test
   script:
-    - mvn $MAVEN_CLI_OPTS test
+    - mvn $MAVEN_CLI_OPTS test jacoco:report
+    - cat target/site/jacoco/index.html
   only:
     - merge_request
 
