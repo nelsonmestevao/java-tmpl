@@ -27,6 +27,8 @@ compile:
     - mvn $MAVEN_CLI_OPTS compile
   only:
     - merge_request
+    - master
+    - main
 
 test:
   stage: test
@@ -35,6 +37,8 @@ test:
     - cat target/site/jacoco/index.html
   only:
     - merge_request
+    - master
+    - main
 
 format:
   stage: style
