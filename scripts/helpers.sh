@@ -2,62 +2,33 @@
 
 set -Eeuo pipefail
 
-BASE_DIR=$(dirname "${BASH_SOURCE[0]:-$0}")
+import() {
+  local -r SCRIPTS_DIR=$(dirname "${BASH_SOURCE[0]:-$0}")
+
+  # shellcheck source=/dev/null
+  . "${SCRIPTS_DIR}/${1}"
+}
 
 # shellcheck source=./colors.sh
-. "${BASE_DIR}/colors.sh"
-# shellcheck source=./colors.sh
-. "${BASE_DIR}/utils.sh"
+import colors.sh
 
-VERSION=0.2.5
+function display_version() {
+  local program="${2:-$(basename "$0")}"
+  local version=${1:?"You need to give a version number"}
 
-function log() {
-  local LABEL="$1"
-  local COLOR="$2"
-  shift 2
-  local MSG=("$@")
-  printf "[${COLOR}${BOLD}${LABEL}${RESET}]%*s" $(($(tput cols) - ${#LABEL} - 2)) | tr ' ' '='
-  for M in "${MSG[@]}"; do
-    let COL=$(tput cols)-2-${#M}
-    printf "%s%${COL}s${RESET}" "* $M"
-  done
-  printf "%*s\n" $(tput cols) | tr ' ' '='
-}
-
-function log_error() {
-  log "FAIL" "$RED" "$@"
-}
-
-function log_warn() {
-  log "WARN" "$ORANGE" "$@"
-}
-
-function log_success() {
-  log "OK" "$GREEN" "$@"
-}
-
-function log_info() {
-  local LABEL="INFO"
-
-  if ! [ "$#" -eq 1 ]; then
-    LABEL=$(echo "$1" | tr '[a-z]' '[A-Z]')
-    shift 1
-  fi
-
-  log "${LABEL}" "$CYAN" "$@"
-}
-
-function load_env() {
-  local ENV_FILE=${1:-.env}
-  set -a
-  if [ -f "$ENV_FILE" ]; then
-    . "$ENV_FILE"
+  if [ -x "$(command -v figlet)" ]; then
+    echo -n "${BLUE}${BOLD}"
+    figlet "${program} script"
+    echo -n "${RESET}"
+    echo "version ${version}"
   else
-    log_error "Couldn't locate ${ENV_FILE} file..."
+    echo "${program} script version ${version}"
   fi
-  set +a
 }
 
-function not_installed() {
-  [ ! -x "$(command -v "$@")" ]
+function help_title_section() {
+  local -r TITLE=$(echo "$@" | tr '[:lower:]' '[:upper:]')
+  echo -e "${BOLD}${TITLE}${RESET}"
 }
+
+[ "$0" = "${BASH_SOURCE[0]}" ] && display_version 0.4.1 || true

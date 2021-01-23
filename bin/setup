@@ -7,9 +7,11 @@ cd "${BASE_DIR}/.." || exit 127
 
 # shellcheck source=../scripts/helpers.sh
 . scripts/helpers.sh
+# shellcheck source=../scripts/logging.sh
+. scripts/logging.sh
 
-PROGRAM=$(basename "$0")
-VERSION=0.2.5
+PROGRAM=$(basename "${BASH_SOURCE[0]:-$0}")
+VERSION=0.4.0
 
 function display_help() {
   cat <<EOF
@@ -48,7 +50,7 @@ case ${1:-all} in
     display_help
     ;;
   -v | --version)
-    display_version ${PROGRAM} ${VERSION}
+    display_version ${VERSION} ${PROGRAM}
     ;;
   dependencies)
     download_dependencies

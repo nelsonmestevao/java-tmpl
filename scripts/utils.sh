@@ -2,27 +2,33 @@
 
 set -Eeuo pipefail
 
-BASE_DIR=$(dirname "${BASH_SOURCE[0]:-$0}")
+import() {
+  local -r SCRIPTS_DIR=$(dirname "${BASH_SOURCE[0]:-$0}")
 
-# shellcheck source=./colors.sh
-. "${BASE_DIR}/colors.sh"
-
-VERSION=0.2.5
-
-function help_title_section() {
-  local TITLE=$(echo "$@" | tr [a-z] [A-Z])
-  echo -e "${BOLD}${TITLE}${RESET}"
+  # shellcheck source=/dev/null
+  . "${SCRIPTS_DIR}/${1}"
 }
 
-function display_version() {
-  local program="$1"
-  local version="$2"
-  if not_installed figlet; then
-    echo "${program} script version ${version}"
-  else
-    echo -n "${BLUE}${BOLD}"
-    figlet "${program} script"
-    echo -n "${RESET}"
-    echo "version ${version}"
-  fi
+# shellcheck source=./helpers.sh
+import helpers.sh
+
+function not_installed() {
+  [ ! -x "$(command -v "$@")" ]
 }
+
+function ask_for_sudo() {
+  # Ask for the administrator password upfront.
+  sudo -v &>/dev/null
+
+  # Update existing `sudo` time stamp
+  # until this script has finished.
+  #
+  # https://gist.github.com/cowboy/3118588
+  while true; do
+    sudo -n true
+    sleep 60
+    kill -0 "$$" || exit
+  done &>/dev/null &
+}
+
+[ "$0" = "${BASH_SOURCE[0]}" ] && display_version 0.4.1 || true
