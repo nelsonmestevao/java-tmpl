@@ -9,7 +9,7 @@ cd "${BASE_DIR}/.." || exit 127
 . scripts/helpers.sh
 
 PROGRAM=$(basename "${BASH_SOURCE[0]:-$0}")
-VERSION=0.4.0
+VERSION=0.4.1
 
 function display_help() {
   cat <<EOF
@@ -31,7 +31,7 @@ case ${1:-java} in
     display_help
     ;;
   -v | --version)
-    display_version ${VERSION} ${PROGRAM} 
+    display_version "${VERSION}" "${PROGRAM}"
     ;;
   -c | --clean)
     bin/mvnw clean compile

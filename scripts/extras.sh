@@ -14,7 +14,7 @@ import helpers.sh
 
 __set_trap() {
   trap -p "$1" | grep "$2" &>/dev/null ||
-    trap "$2" "$1"
+    trap '$2' "$1"
 }
 
 __kill_all_subprocesses() {
