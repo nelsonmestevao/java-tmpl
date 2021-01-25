@@ -5,9 +5,25 @@
 [pedro]: https://github.com/pedroribeiro22
 [pedro-pic]: https://github.com/pedroribeiro22.png?size=120
 
+<div align="center">
+
 # Java Project Template
 
-> A Project Template for programs written in the Java programming language.
+[Geeting Started](#rocket-getting-started)
+|
+[Docker](#whale-docker)
+|
+[Development](#hammer-development)
+|
+[Tools](#hammer_and_wrench-tools)
+|
+[Team](#busts_in_silhouette-team)
+
+</div>
+
+This is project template for programs and applications written in the Java
+programming language. With lots of plugins and small packages written already
+ to help getting started.
 
 ## :rocket: Getting Started
 
