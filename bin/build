@@ -34,10 +34,10 @@ case ${1:-java} in
     display_version "${VERSION}" "${PROGRAM}"
     ;;
   -c | --clean)
-    bin/mvnw clean compile
+    bin/mvnw clean compile package
     ;;
    java)
-    bin/mvnw compile
+    bin/mvnw compile package
     ;;
    *)
     display_help >&2
